@@ -1,0 +1,12 @@
+CFLAGS = -g -Wall -Wshadow
+GCC = gcc 
+SRCS = main.c tree.c list.c
+OBJS = $(SRCS:%.c=%.o)
+VALGRIND = valgrind --leak-check=full --tool=memcheck --verbose
+
+comp1 : $(OBJS)
+	$(GCC) $(CFLAGS) $(OBJS) -o comp1
+memcheck: comp1
+	$(VALGRIND) comp1
+clean:
+	rm -f *.o 

@@ -1,0 +1,167 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+#include "answer05.h"
+
+#define FALSE 0
+#define TRUE 1
+
+Image * Image_load(const char * filename){
+	FILE *fptr;
+	int err = FALSE;
+	size_t read;
+	ImageHeader header;
+	Image *im = NULL;
+	fptr = fopen(filename,"rb");
+	if(fptr ==NULL){   //open file
+	//	printf("Failed to open file '%s' \n",filename);
+		err = TRUE;
+	}
+	if (!err){     //read header
+		fseek(fptr,0,SEEK_SET);
+		read = fread(&header,sizeof(ImageHeader), 1, fptr);
+		if(read != 1){
+		//	printf("Failed to read header '%s' \n",filename);
+			err = TRUE;
+		}
+	}
+	if(!err){    //check header
+	    if (header.magic_number != 0x21343632)
+	    err =TRUE;
+	    if (header.width <= 0)
+	    err =TRUE;
+	    if (header.height <= 0)
+	    err =TRUE;
+	    if (header.comment_len <= 0)
+	    err =TRUE;
+	}
+
+	if (!err){  //allocate Image comment
+		im = malloc(sizeof(Image));
+		if(im == NULL){
+			err = TRUE;
+		}
+
+	}
+
+	if(!err){
+		im->comment = malloc(sizeof(char)* header.comment_len);
+		if(im->comment == NULL){
+		err=TRUE;
+		}
+	}
+
+	if(!err){
+		read = fread(im->comment,sizeof(char),header.comment_len,fptr);
+		if(read != header.comment_len)
+			err = TRUE;
+		if(im->comment[header.comment_len-1] != '\0')
+		    err = TRUE;
+	}
+
+	if(!err){
+		im->width = header.width;
+		im->height = header.height;
+		im->data = malloc(sizeof(uint8_t)*header.width*header.height);
+		if (im->data ==NULL){
+			err=TRUE;
+		}
+	}
+	
+	if(!err){
+		read = fread(im->data,sizeof(uint8_t),header.width*header.height,fptr);
+		if(read != header.width*header.height){
+			err = TRUE;
+		}
+	}
+
+	if(!err){
+		uint8_t byte;
+		read = fread(&byte,sizeof(uint8_t),1,fptr);
+		if(read != 0){
+			err = TRUE;
+		}
+	}
+	
+	if (err==TRUE){
+	free(im->data);
+	free(im->comment);
+	free(im);
+	}
+	
+	fclose(fptr);
+	
+	return im;
+}
+
+
+int Image_save(const char * filename, Image * image){
+	FILE *fptr = NULL;
+	int err = FALSE;
+	size_t write;
+	ImageHeader header;
+	fptr = fopen(filename,"wb");
+	if(fptr ==NULL){   //open file
+		err = TRUE;
+	}
+	header.magic_number = 0x21343632;
+	header.width = image->width;
+	header.height = image->height;
+	header.comment_len = strlen(image->comment) + 1;
+	
+	if(!err){
+		write = fwrite(&header,sizeof(ImageHeader),1,fptr);
+		if(write != 1){
+			err = TRUE;
+		}
+	}
+
+	if(!err){
+		write = fwrite(image->comment,sizeof(char),header.comment_len,fptr);
+		if(write != header.comment_len){
+			err = TRUE;
+		}
+	}
+	
+	if(!err){
+		write = fwrite(image->data,sizeof(uint8_t),header.width*header.height,fptr);
+		if(write != header.width*header.height){
+			err = TRUE;
+		}
+	}
+    if(fptr)
+	    fclose(fptr);
+	return !err;
+}
+
+
+void Image_free(Image * image)
+{
+    if(image !=NULL){
+        free(image->data);
+	    free(image->comment);
+	    free(image);
+    }
+}
+
+
+
+void linearNormalization(int width, int height, uint8_t * intensity)
+{
+	int i;
+	int min = intensity[0];
+	int max = intensity[0];
+	for(i=0;i<height*width;i++){
+	    if(intensity[i] < min){
+	         min = intensity[i];
+	    }
+	    if(intensity[i] > max){
+	        max = intensity[i];
+	    }
+	}
+	for(i=0;i<height*width;i++){
+	    intensity[i] = (intensity[i]-min) * 255.0 / (max-min);
+	}
+}
+

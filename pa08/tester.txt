@@ -1,0 +1,786 @@
+   ---------------------------------------------------------------------------
+   Welcome to the PA08 testing program. This program takes a _long_ time
+   to execute. There is a reason for this. You should not rely on this
+   program to test your code as you go. Instead, you should think about
+   what your code should be doing, and what inputs should produce what
+   outputs for each of your functions.
+   
+        YOU SHOULD THEN TEST EVERY PIECE OF CODE AS YOU WRITE IT 
+   
+                                 AND 
+   
+                        FIX MISTAKES AS YOU GO.
+   
+   When you are convinced that you have the entire assignment 100% correct,
+   then you can use this testing program to test it. 
+   
+   This will give you your mark assuming that you submit it correctly, and 
+   there are no other irregularities.
+   ---------------------------------------------------------------------------
+
+### Testcase 0: Invalid arguments. Expect: FAIL.
+
+   ./pa08 a b c
+   Invalid state: b
+
+   Pass. (int main(...)=1)
+
+### Testcase 1: Invalid 'state'. Expect: FAIL.
+
+   ./pa08 1 ABCDEF
+   Invalid state: ABCDEF
+
+   Pass. (int main(...)=1)
+
+### Testcase 2: Invalid 'state'. Expect: FAIL.
+
+   ./pa08 1 1234567789ABCDEF-- UUUU
+   Invalid state: 1234567789ABCDEF--
+
+   Pass. (int main(...)=1)
+
+### Testcase 3: Invalid 'movelist'. Expect: FAIL.
+
+   ./pa08 1 123456789ABCDEF- UUUUDRLS
+   Invalid movelist: UUUUDRLS
+
+   Pass. (int main(...)=1)
+
+### Testcase 4: Option 1. Expect: I.
+
+   ./pa08 1 123456789ABCDEF- R
+   I
+
+   Pass. (int main(...)=0)
+
+### Testcase 5: Option 1. Expect: 123456789ABCDE-F.
+
+   ./pa08 1 123456789ABCDEF- L
+   123456789ABCDE-F
+
+   Pass. (int main(...)=0)
+
+### Testcase 6: Option 1. Expect: 123456789AB-DEFC.
+
+   ./pa08 1 123456789ABCDEF- U
+   123456789AB-DEFC
+
+   Pass. (int main(...)=0)
+
+### Testcase 7: Option 1. Expect: I.
+
+   ./pa08 1 123456789ABCDEF- D
+   I
+
+   Pass. (int main(...)=0)
+
+### Testcase 8: Option 1. Expect: I.
+
+   ./pa08 1 123456789ABCDEF- RR
+   I
+
+   Pass. (int main(...)=0)
+
+### Testcase 9: Option 1. Expect: 123456789ABCD-EF.
+
+   ./pa08 1 123456789ABCDEF- LL
+   123456789ABCD-EF
+
+   Pass. (int main(...)=0)
+
+### Testcase 10: Option 1. Expect: 1234567-9AB8DEFC.
+
+   ./pa08 1 123456789ABCDEF- UU
+   1234567-9AB8DEFC
+
+   Pass. (int main(...)=0)
+
+### Testcase 11: Option 1. Expect: I.
+
+   ./pa08 1 123456789ABCDEF- DD
+   I
+
+   Pass. (int main(...)=0)
+
+### Testcase 12: Option 1. Expect: I.
+
+   ./pa08 1 123456789ABCDEF- RL
+   I
+
+   Pass. (int main(...)=0)
+
+### Testcase 13: Option 1. Expect: 123456789ABCDEF-.
+
+   ./pa08 1 123456789ABCDEF- LR
+   123456789ABCDEF-
+
+   Pass. (int main(...)=0)
+
+### Testcase 14: Option 1. Expect: 123456789ABCDEF-.
+
+   ./pa08 1 123456789ABCDEF- UD
+   123456789ABCDEF-
+
+   Pass. (int main(...)=0)
+
+### Testcase 15: Option 1. Expect: I.
+
+   ./pa08 1 123456789ABCDEF- DU
+   I
+
+   Pass. (int main(...)=0)
+
+### Testcase 16: Option 1. Expect: I.
+
+   ./pa08 1 123456789ABCDEF- RLUD
+   I
+
+   Pass. (int main(...)=0)
+
+### Testcase 17: Option 1. Expect: I.
+
+   ./pa08 1 123456789ABCDEF- DULR
+   I
+
+   Pass. (int main(...)=0)
+
+### Testcase 18: Option 1. Expect: I.
+
+   ./pa08 1 123456789ABCDEF- DDURRL
+   I
+
+   Pass. (int main(...)=0)
+
+### Testcase 19: Option 1. Expect: I.
+
+   ./pa08 1 123456789ABCDEF- LDLDURURUR
+   I
+
+   Pass. (int main(...)=0)
+
+### Testcase 20: Option 1. Expect: FEDCB-A987654321.
+
+   ./pa08 1 FEDC-BA987654321 R
+   FEDCB-A987654321
+
+   Pass. (int main(...)=0)
+
+### Testcase 21: Option 1. Expect: I.
+
+   ./pa08 1 FEDC-BA987654321 L
+   I
+
+   Pass. (int main(...)=0)
+
+### Testcase 22: Option 1. Expect: -EDCFBA987654321.
+
+   ./pa08 1 FEDC-BA987654321 U
+   -EDCFBA987654321
+
+   Pass. (int main(...)=0)
+
+### Testcase 23: Option 1. Expect: FEDC8BA9-7654321.
+
+   ./pa08 1 FEDC-BA987654321 D
+   FEDC8BA9-7654321
+
+   Pass. (int main(...)=0)
+
+### Testcase 24: Option 1. Expect: FEDCBA-987654321.
+
+   ./pa08 1 FEDC-BA987654321 RR
+   FEDCBA-987654321
+
+   Pass. (int main(...)=0)
+
+### Testcase 25: Option 1. Expect: I.
+
+   ./pa08 1 FEDC-BA987654321 LL
+   I
+
+   Pass. (int main(...)=0)
+
+### Testcase 26: Option 1. Expect: I.
+
+   ./pa08 1 FEDC-BA987654321 UU
+   I
+
+   Pass. (int main(...)=0)
+
+### Testcase 27: Option 1. Expect: FEDC8BA94765-321.
+
+   ./pa08 1 FEDC-BA987654321 DD
+   FEDC8BA94765-321
+
+   Pass. (int main(...)=0)
+
+### Testcase 28: Option 1. Expect: FEDC-BA987654321.
+
+   ./pa08 1 FEDC-BA987654321 RL
+   FEDC-BA987654321
+
+   Pass. (int main(...)=0)
+
+### Testcase 29: Option 1. Expect: I.
+
+   ./pa08 1 FEDC-BA987654321 LR
+   I
+
+   Pass. (int main(...)=0)
+
+### Testcase 30: Option 1. Expect: FEDC-BA987654321.
+
+   ./pa08 1 FEDC-BA987654321 UD
+   FEDC-BA987654321
+
+   Pass. (int main(...)=0)
+
+### Testcase 31: Option 1. Expect: FEDC-BA987654321.
+
+   ./pa08 1 FEDC-BA987654321 DU
+   FEDC-BA987654321
+
+   Pass. (int main(...)=0)
+
+### Testcase 32: Option 1. Expect: FEDC-BA987654321.
+
+   ./pa08 1 FEDC-BA987654321 RLUD
+   FEDC-BA987654321
+
+   Pass. (int main(...)=0)
+
+### Testcase 33: Option 1. Expect: I.
+
+   ./pa08 1 FEDC-BA987654321 DULR
+   I
+
+   Pass. (int main(...)=0)
+
+### Testcase 34: Option 1. Expect: FEDC8BA97-654321.
+
+   ./pa08 1 FEDC-BA987654321 DDURRL
+   FEDC8BA97-654321
+
+   Pass. (int main(...)=0)
+
+### Testcase 35: Option 1. Expect: I.
+
+   ./pa08 1 FEDC-BA987654321 LDLDURURUR
+   I
+
+   Pass. (int main(...)=0)
+
+### Testcase 36: Option 1. Expect: FEDCBA9876-54321.
+
+   ./pa08 1 FEDCBA987-654321 R
+   FEDCBA9876-54321
+
+   Pass. (int main(...)=0)
+
+### Testcase 37: Option 1. Expect: FEDCBA98-7654321.
+
+   ./pa08 1 FEDCBA987-654321 L
+   FEDCBA98-7654321
+
+   Pass. (int main(...)=0)
+
+### Testcase 38: Option 1. Expect: FEDCB-987A654321.
+
+   ./pa08 1 FEDCBA987-654321 U
+   FEDCB-987A654321
+
+   Pass. (int main(...)=0)
+
+### Testcase 39: Option 1. Expect: FEDCBA9873654-21.
+
+   ./pa08 1 FEDCBA987-654321 D
+   FEDCBA9873654-21
+
+   Pass. (int main(...)=0)
+
+### Testcase 40: Option 1. Expect: FEDCBA98765-4321.
+
+   ./pa08 1 FEDCBA987-654321 RR
+   FEDCBA98765-4321
+
+   Pass. (int main(...)=0)
+
+### Testcase 41: Option 1. Expect: I.
+
+   ./pa08 1 FEDCBA987-654321 LL
+   I
+
+   Pass. (int main(...)=0)
+
+### Testcase 42: Option 1. Expect: F-DCBE987A654321.
+
+   ./pa08 1 FEDCBA987-654321 UU
+   F-DCBE987A654321
+
+   Pass. (int main(...)=0)
+
+### Testcase 43: Option 1. Expect: I.
+
+   ./pa08 1 FEDCBA987-654321 DD
+   I
+
+   Pass. (int main(...)=0)
+
+### Testcase 44: Option 1. Expect: FEDCBA987-654321.
+
+   ./pa08 1 FEDCBA987-654321 RL
+   FEDCBA987-654321
+
+   Pass. (int main(...)=0)
+
+### Testcase 45: Option 1. Expect: FEDCBA987-654321.
+
+   ./pa08 1 FEDCBA987-654321 LR
+   FEDCBA987-654321
+
+   Pass. (int main(...)=0)
+
+### Testcase 46: Option 1. Expect: FEDCBA987-654321.
+
+   ./pa08 1 FEDCBA987-654321 UD
+   FEDCBA987-654321
+
+   Pass. (int main(...)=0)
+
+### Testcase 47: Option 1. Expect: FEDCBA987-654321.
+
+   ./pa08 1 FEDCBA987-654321 DU
+   FEDCBA987-654321
+
+   Pass. (int main(...)=0)
+
+### Testcase 48: Option 1. Expect: FEDCBA987-654321.
+
+   ./pa08 1 FEDCBA987-654321 RLUD
+   FEDCBA987-654321
+
+   Pass. (int main(...)=0)
+
+### Testcase 49: Option 1. Expect: FEDCBA987-654321.
+
+   ./pa08 1 FEDCBA987-654321 DULR
+   FEDCBA987-654321
+
+   Pass. (int main(...)=0)
+
+### Testcase 50: Option 1. Expect: I.
+
+   ./pa08 1 FEDCBA987-654321 DDURRL
+   I
+
+   Pass. (int main(...)=0)
+
+### Testcase 51: Option 1. Expect: I.
+
+   ./pa08 1 FEDCBA987-654321 LDLDURURUR
+   I
+
+   Pass. (int main(...)=0)
+
+### Testcase 52: Option 2. Expect:
+   FEDCBA987-654321
+   FEDCB-987A654321
+   FEDCBA98-7654321
+   FEDCBA9873654-21
+   FEDCBA9876-54321
+
+   ./pa08 2 FEDCBA987-654321 1
+   FEDCBA987-654321
+   FEDCB-987A654321
+   FEDCBA98-7654321
+   FEDCBA9873654-21
+   FEDCBA9876-54321
+
+   Pass. (int main(...)=0)
+
+### Testcase 53: Option 2. Expect:
+   FEDCBA987-654321
+   FEDCB-987A654321
+   F-DCBE987A654321
+   FEDC-B987A654321
+   FEDC-A98B7654321
+   FEDCB9-87A654321
+   FEDCBA98-7654321
+   FEDCBA-876954321
+   FEDCBA984765-321
+   FEDCBA9873654-21
+   FEDCBA987365-421
+   FEDCBA98736542-1
+   FEDCBA9876-54321
+   FEDCBA98762543-1
+   FEDCBA98765-4321
+
+   ./pa08 2 FEDCBA987-654321 2
+   FEDCBA987-654321
+   FEDCB-987A654321
+   F-DCBE987A654321
+   FEDC-B987A654321
+   FEDC-A98B7654321
+   FEDCB9-87A654321
+   FEDCBA98-7654321
+   FEDCBA-876954321
+   FEDCBA984765-321
+   FEDCBA9873654-21
+   FEDCBA987365-421
+   FEDCBA98736542-1
+   FEDCBA9876-54321
+   FEDCBA98762543-1
+   FEDCBA98765-4321
+
+   Pass. (int main(...)=0)
+
+### Testcase 54: Option 2. Expect:
+   FEDCBA987-654321
+   FEDCB-987A654321
+   F-DCBE987A654321
+   -FDCBE987A654321
+   -EDCFB987A654321
+   -EDCFA98B7654321
+   FD-CBE987A654321
+   FEDC-B987A654321
+   FE-CB9D87A654321
+   FEDC-A98B7654321
+   FE-CBAD876954321
+   FEDC7B98-A654321
+   FEDCA-98B7654321
+   FEDCBA98-7654321
+   FEDCB9-87A654321
+   FEDCB-A876954321
+   FEDCB9687A-54321
+   FEDCB98-7A654321
+   FEDCBA98-3657421
+   FEDCBA-876954321
+   FEDCBA8-76954321
+   FEDCBA9-76584321
+   FEDCBA984765-321
+   FEDCBA9847653-21
+   FEDCBA9873654-21
+   FEDCBA987365-421
+   FEDCBA9873-54261
+   FEDCBA9876-54321
+   FEDCBA98736542-1
+   FEDCBA987365421-
+   FEDCBA98762543-1
+   FEDCBA9876254-31
+   FEDCBA987625431-
+   FEDCBA98765-4321
+   FEDCBA987651432-
+
+   ./pa08 2 FEDCBA987-654321 3
+   FEDCBA987-654321
+   FEDCB-987A654321
+   F-DCBE987A654321
+   -FDCBE987A654321
+   -EDCFB987A654321
+   -EDCFA98B7654321
+   FD-CBE987A654321
+   FEDC-B987A654321
+   FE-CB9D87A654321
+   FEDC-A98B7654321
+   FE-CBAD876954321
+   FEDC7B98-A654321
+   FEDCA-98B7654321
+   FEDCBA98-7654321
+   FEDCB9-87A654321
+   FEDCB-A876954321
+   FEDCB9687A-54321
+   FEDCB98-7A654321
+   FEDCBA98-3657421
+   FEDCBA-876954321
+   FEDCBA8-76954321
+   FEDCBA9-76584321
+   FEDCBA984765-321
+   FEDCBA9847653-21
+   FEDCBA9873654-21
+   FEDCBA987365-421
+   FEDCBA9873-54261
+   FEDCBA9876-54321
+   FEDCBA98736542-1
+   FEDCBA987365421-
+   FEDCBA98762543-1
+   FEDCBA9876254-31
+   FEDCBA987625431-
+   FEDCBA98765-4321
+   FEDCBA987651432-
+
+   Pass. (int main(...)=0)
+
+### Testcase 55: Option 2. Expect:
+   FEDCBA987-654321
+   FEDCB-987A654321
+   F-DCBE987A654321
+   -FDCBE987A654321
+   -EDCFB987A654321
+   -EDCFA98B7654321
+   BFDC-E987A654321
+   E-DCFB987A654321
+   E-DCFA98B7654321
+   F-DCAE98B7654321
+   FEDC-B987A654321
+   FD-CBE987A654321
+   F-ECB9D87A654321
+   F-DCBEA876954321
+   F-ECBAD876954321
+   FD9CBE-87A654321
+   FDC-BE987A654321
+   FEDC-A98B7654321
+   FE-CB9D87A654321
+   FEC-B9D87A654321
+   FE-CBAD876954321
+   FED-B98C7A654321
+   FEC-BAD876954321
+   FEDC-A98B3657421
+   FED-BA8C76954321
+   FED-BA9C76584321
+   FEDC7B98-A654321
+   FEDC-BA876954321
+   FEDC7B984A65-321
+   FEDC7B98A-654321
+   FEDCA-98B7654321
+   FEDCA798B-654321
+   FEDCA9-8B7654321
+   FEDCB9-87A654321
+   FEDCB-A876954321
+   FEDCB6A87-954321
+   FEDCBA98-7654321
+   FEDCBA-876954321
+   FEDCB9687A-54321
+   FEDCB9687-A54321
+   FEDCB9687A2543-1
+   FEDCB9687A5-4321
+   FEDCB98-7A654321
+   FEDCB9857A6-4321
+   FEDCBA-873954261
+   FEDCBA98-3657421
+   FEDCBA8-76954321
+   FEDCBA-976584321
+   FEDCBA85769-4321
+   FEDCBA9-76584321
+   FEDCBA984765-321
+   FEDCBA983-657421
+   FEDCBA984-653721
+   FEDCBA987-354261
+   FEDCBA9847653-21
+   FEDCBA98476532-1
+   FEDCBA987-254631
+   FEDCBA9873654-21
+   FEDCBA987365-421
+   FEDCBA9873-54261
+   FEDCBA98735-4261
+   FEDCBA98736-4215
+   FEDCBA98736542-1
+   FEDCBA9876-54321
+   FEDCBA987365421-
+   FEDCBA98762543-1
+   FEDCBA9876254-31
+   FEDCBA987625-431
+   FEDCBA98762-4315
+   FEDCBA98765-4321
+   FEDCBA987625431-
+   FEDCBA987651432-
+   FEDCBA98765143-2
+
+   ./pa08 2 FEDCBA987-654321 4
+   FEDCBA987-654321
+   FEDCB-987A654321
+   F-DCBE987A654321
+   -FDCBE987A654321
+   -EDCFB987A654321
+   -EDCFA98B7654321
+   BFDC-E987A654321
+   E-DCFB987A654321
+   E-DCFA98B7654321
+   F-DCAE98B7654321
+   FEDC-B987A654321
+   FD-CBE987A654321
+   F-ECB9D87A654321
+   F-DCBEA876954321
+   F-ECBAD876954321
+   FD9CBE-87A654321
+   FDC-BE987A654321
+   FEDC-A98B7654321
+   FE-CB9D87A654321
+   FEC-B9D87A654321
+   FE-CBAD876954321
+   FED-B98C7A654321
+   FEC-BAD876954321
+   FEDC-A98B3657421
+   FED-BA8C76954321
+   FED-BA9C76584321
+   FEDC7B98-A654321
+   FEDC-BA876954321
+   FEDC7B984A65-321
+   FEDC7B98A-654321
+   FEDCA-98B7654321
+   FEDCA798B-654321
+   FEDCA9-8B7654321
+   FEDCB9-87A654321
+   FEDCB-A876954321
+   FEDCB6A87-954321
+   FEDCBA98-7654321
+   FEDCBA-876954321
+   FEDCB9687A-54321
+   FEDCB9687-A54321
+   FEDCB9687A2543-1
+   FEDCB9687A5-4321
+   FEDCB98-7A654321
+   FEDCB9857A6-4321
+   FEDCBA-873954261
+   FEDCBA98-3657421
+   FEDCBA8-76954321
+   FEDCBA-976584321
+   FEDCBA85769-4321
+   FEDCBA9-76584321
+   FEDCBA984765-321
+   FEDCBA983-657421
+   FEDCBA984-653721
+   FEDCBA987-354261
+   FEDCBA9847653-21
+   FEDCBA98476532-1
+   FEDCBA987-254631
+   FEDCBA9873654-21
+   FEDCBA987365-421
+   FEDCBA9873-54261
+   FEDCBA98735-4261
+   FEDCBA98736-4215
+   FEDCBA98736542-1
+   FEDCBA9876-54321
+   FEDCBA987365421-
+   FEDCBA98762543-1
+   FEDCBA9876254-31
+   FEDCBA987625-431
+   FEDCBA98762-4315
+   FEDCBA98765-4321
+   FEDCBA987625431-
+   FEDCBA987651432-
+   FEDCBA98765143-2
+
+   Pass. (int main(...)=0)
+
+### Testcase 56: Option 3. Expect: .
+
+   ./pa08 3 123456789ABCDEF-
+    
+
+   Pass. (int main(...)=0)
+
+### Testcase 57: Option 3. Expect: R.
+
+   ./pa08 3 123456789ABCDE-F
+   R
+
+   Pass. (int main(...)=0)
+
+### Testcase 58: Option 3. Expect: RR.
+
+   ./pa08 3 123456789ABCD-EF
+   RR
+
+   Pass. (int main(...)=0)
+
+### Testcase 59: Option 3. Expect: RRR.
+
+   ./pa08 3 123456789ABC-DEF
+   RRR
+
+   Pass. (int main(...)=0)
+
+### Testcase 60: Option 3. Expect: No solution within 9 steps.
+
+   ./pa08 3 123456789AB-CDEF
+   No solution within 9 steps
+
+   Pass. (int main(...)=0)
+
+### Testcase 61: Option 3. Expect: D.
+
+   ./pa08 3 123456789AB-DEFC
+   D
+
+   Pass. (int main(...)=0)
+
+### Testcase 62: Option 3. Expect: DD.
+
+   ./pa08 3 1234567-9AB8DEFC
+   DD
+
+   Pass. (int main(...)=0)
+
+### Testcase 63: Option 3. Expect: DDD.
+
+   ./pa08 3 123-56749AB8DEFC
+   DDD
+
+   Pass. (int main(...)=0)
+
+### Testcase 64: Option 3. Expect: RD.
+
+   ./pa08 3 123456789A-BDEFC
+   RD
+
+   Pass. (int main(...)=0)
+
+### Testcase 65: Option 3. Expect: RRD.
+
+   ./pa08 3 123456789-ABDEFC
+   RRD
+
+   Pass. (int main(...)=0)
+
+### Testcase 66: Option 3. Expect: DRRD.
+
+   ./pa08 3 12345-7896ABDEFC
+   DRRD
+
+   Pass. (int main(...)=0)
+
+### Testcase 67: Option 3. Expect: LDDRRD.
+
+   ./pa08 3 13-4527896ABDEFC
+   LDDRRD
+
+   Pass. (int main(...)=0)
+
+### Testcase 68: Option 3. Expect: ULDDRRD.
+
+   ./pa08 3 137452-896ABDEFC
+   ULDDRRD
+
+   Pass. (int main(...)=0)
+
+### Testcase 69: Option 3. Expect: LULDDRRD.
+
+   ./pa08 3 1374528-96ABDEFC
+   LULDDRRD
+
+   Pass. (int main(...)=0)
+
+### Testcase 70: Option 3. Expect: DLULDDRRD.
+
+   ./pa08 3 137-528496ABDEFC
+   DLULDDRRD
+
+   Pass. (int main(...)=0)
+
+### Testcase 71: Option 3. Expect: No solution within 9 steps.
+
+   ./pa08 3 137A528496-BDEFC
+   No solution within 9 steps
+
+   Pass. (int main(...)=0)
+
+### Testcase 72: Option 3. Expect: LURURDDDR.
+
+   ./pa08 3 16249538A-7CDEBF
+   LURURDDDR
+
+   Pass. (int main(...)=0)
+
+
+73/73 testcases passed.
+Overall mark is a PASS.

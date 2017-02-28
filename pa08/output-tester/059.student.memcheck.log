@@ -1,0 +1,77 @@
+==34258== Memcheck, a memory error detector
+==34258== Copyright (C) 2002-2012, and GNU GPL'd, by Julian Seward et al.
+==34258== Using Valgrind-3.8.1 and LibVEX; rerun with -h for copyright info
+==34258== Command: /tmp/.mDAjSz/a.out 3 123456789ABC-DEF
+==34258== Parent PID: 34257
+==34258== 
+--34258-- 
+--34258-- Valgrind options:
+--34258--    --tool=memcheck
+--34258--    --leak-check=full
+--34258--    --verbose
+--34258--    --log-file=/tmp/.mDAjSz/tmpf
+--34258-- Contents of /proc/version:
+--34258--   Linux version 2.6.32-642.3.1.el6.x86_64 (mockbuild@x86-029.build.eng.bos.redhat.com) (gcc version 4.4.7 20120313 (Red Hat 4.4.7-17) (GCC) ) #1 SMP Sun Jun 26 18:16:44 EDT 2016
+--34258-- Arch and hwcaps: AMD64, amd64-sse3-cx16-avx
+--34258-- Page sizes: currently 4096, max supported 4096
+--34258-- Valgrind library directory: /usr/lib64/valgrind
+--34258-- Reading syms from /tmp/.mDAjSz/a.out
+--34258-- Reading syms from /usr/lib64/valgrind/memcheck-amd64-linux
+--34258--    object doesn't have a dynamic symbol table
+--34258-- Reading syms from /lib64/ld-2.12.so
+--34258--   Considering /usr/lib/debug/.build-id/f3/eebd18e66eb139ea4d76cdfa86d643abcf0070.debug ..
+--34258--   .. build-id is valid
+--34258-- Scheduler: using generic scheduler lock implementation.
+--34258-- Reading suppressions file: /usr/lib64/valgrind/default.supp
+==34258== embedded gdbserver: reading from /tmp/vgdb-pipe-from-vgdb-to-34258-by-hu298-on-ecegrid-thin5.ecn.purdue.edu
+==34258== embedded gdbserver: writing to   /tmp/vgdb-pipe-to-vgdb-from-34258-by-hu298-on-ecegrid-thin5.ecn.purdue.edu
+==34258== embedded gdbserver: shared mem   /tmp/vgdb-pipe-shared-mem-vgdb-34258-by-hu298-on-ecegrid-thin5.ecn.purdue.edu
+==34258== 
+==34258== TO CONTROL THIS PROCESS USING vgdb (which you probably
+==34258== don't want to do, unless you know exactly what you're doing,
+==34258== or are doing some strange experiment):
+==34258==   /usr/lib64/valgrind/../../bin/vgdb --pid=34258 ...command...
+==34258== 
+==34258== TO DEBUG THIS PROCESS USING GDB: start GDB like this
+==34258==   /path/to/gdb /tmp/.mDAjSz/a.out
+==34258== and then give GDB the following command
+==34258==   target remote | /usr/lib64/valgrind/../../bin/vgdb --pid=34258
+==34258== --pid is optional if only one valgrind process is running
+==34258== 
+--34258-- REDIR: 0x3441017d10 (strlen) redirected to 0x38049551 (vgPlain_amd64_linux_REDIR_FOR_strlen)
+--34258-- Reading syms from /usr/lib64/valgrind/vgpreload_core-amd64-linux.so
+--34258-- Reading syms from /usr/lib64/valgrind/vgpreload_memcheck-amd64-linux.so
+--34258-- REDIR: 0x3441017b20 (index) redirected to 0x4a07c30 (index)
+--34258-- REDIR: 0x3441017ba0 (strcmp) redirected to 0x4a08570 (strcmp)
+--34258-- Reading syms from /lib64/libc-2.12.so
+--34258--   Considering /usr/lib/debug/.build-id/24/d3ab3db0f38c7515feadf82191651da4117a18.debug ..
+--34258--   .. build-id is valid
+--34258-- REDIR: 0x3441484e60 (strcasecmp) redirected to 0x480155c (_vgnU_ifunc_wrapper)
+--34258-- REDIR: 0x3441487120 (strncasecmp) redirected to 0x480155c (_vgnU_ifunc_wrapper)
+--34258-- REDIR: 0x3441482dd0 (__GI_strrchr) redirected to 0x4a07ab0 (__GI_strrchr)
+--34258-- REDIR: 0x34414812b0 (strlen) redirected to 0x480155c (_vgnU_ifunc_wrapper)
+--34258-- REDIR: 0x3441533820 (__strlen_sse42) redirected to 0x4a07f90 (strlen)
+--34258-- REDIR: 0x3441480d00 (strcpy) redirected to 0x480155c (_vgnU_ifunc_wrapper)
+--34258-- REDIR: 0x34415342c0 (???) redirected to 0x4a07fd0 (strcpy)
+--34258-- REDIR: 0x3441484690 (mempcpy) redirected to 0x4a0a020 (mempcpy)
+--34258-- REDIR: 0x3441489800 (memcpy) redirected to 0x4a08b60 (memcpy)
+--34258-- REDIR: 0x344147ba00 (free) redirected to 0x4a063a9 (free)
+--34258-- REDIR: 0x344147f870 (strcmp) redirected to 0x480155c (_vgnU_ifunc_wrapper)
+--34258-- REDIR: 0x3441528550 (__strcmp_sse42) redirected to 0x4a084d0 (strcmp)
+--34258-- REDIR: 0x344147aba0 (malloc) redirected to 0x4a069ac (malloc)
+--34258-- REDIR: 0x34414812f0 (__GI_strlen) redirected to 0x4a07fb0 (__GI_strlen)
+--34258-- REDIR: 0x344147f7c0 (index) redirected to 0x480155c (_vgnU_ifunc_wrapper)
+--34258-- REDIR: 0x34415284a0 (__strchr_sse42) redirected to 0x4a07b40 (index)
+==34258== 
+==34258== HEAP SUMMARY:
+==34258==     in use at exit: 0 bytes in 0 blocks
+==34258==   total heap usage: 41,887 allocs, 41,887 frees, 725,905 bytes allocated
+==34258== 
+==34258== All heap blocks were freed -- no leaks are possible
+==34258== 
+==34258== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 6 from 6)
+--34258-- 
+--34258-- used_suppression:      4 U1004-ARM-_dl_relocate_object
+--34258-- used_suppression:      2 glibc-2.5.x-on-SUSE-10.2-(PPC)-2a
+==34258== 
+==34258== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 6 from 6)

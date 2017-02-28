@@ -1,0 +1,26 @@
+Breakpoint 1 at 0x400514: file main.c, line 10.
+Starting program: /home/shay/a/hu298/Desktop/pa03/a.out 
+
+Breakpoint 1, swapString (a=0x7fffffffe388, b=0x7fffffffe380) at main.c:10
+10	    tmp = *a;
+11	    *a = *b;
+12	    *b = tmp;
+13	    printf("Calling swapString(...)\n");
+$1 = (const char **) 0x7fffffffe388
+$2 = 0x40091d "two"
+$3 = 0x400919 "one"
+14	    printf("&a = %p\n", &a);
+15	    printf("&b = %p\n", &b);
+16	    printf("&tmp = %p\n", &tmp);
+17	}
+main (argc=1, argv=0x7fffffffe488) at main.c:42
+42	    printf("After swap, str1 == %p (i.e., '%s'), "
+45	    return EXIT_SUCCESS;
+46	}
+__libc_start_main (main=0x40058f <main>, argc=1, ubp_av=0x7fffffffe488, 
+    init=<value optimized out>, fini=<value optimized out>, 
+    rtld_fini=<value optimized out>, stack_end=0x7fffffffe478)
+    at libc-start.c:258
+258	  exit (result);
+
+Program exited normally.

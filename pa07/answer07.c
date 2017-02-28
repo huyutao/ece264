@@ -1,0 +1,128 @@
+#include "answer07.h"
+
+BusinessNode * create_node(char * stars, char * name, char * address){
+	BusinessNode * newnode = malloc(sizeof(BusinessNode));
+	newnode -> name = name;
+	newnode -> stars = stars;
+	newnode -> address = address;
+	newnode -> left = NULL;
+	newnode ->right = NULL;
+	return newnode;
+}
+
+BusinessNode * tree_insert(BusinessNode * node, BusinessNode * root){
+	if (node == NULL){ return root; }
+	if (root == NULL){ return node; }
+	int cmp = strcmp(node -> name, root ->name);
+	if (cmp < 0){ root -> left = tree_insert(node, root -> left);}
+	if (cmp > 0){ root -> right = tree_insert(node, root -> right);}
+	if (cmp == 0){
+		node -> left = root -> left;  
+		root -> left = node;
+	}
+	return root;
+}
+
+char * * seperate (char * str){
+	int len_str = strlen(str);
+	int ind = 0;
+	int last = 0;
+	int arrInd = 0;
+	char * newstr = NULL;
+	char * * strArr = malloc(3 * sizeof(char *));
+	for(ind=0; ind < len_str; ind++){
+        if(strchr("\t",str[ind]) != NULL){
+            newstr = malloc(sizeof(char)*(ind - last + 1));
+            memcpy(newstr, str+last, ind-last);
+            strArr[arrInd] = newstr;
+            last = ind + 1;
+            arrInd++;
+        }
+    	}
+    	newstr = malloc(sizeof(char)*(ind - last + 1));
+    	memcpy(newstr, str+last, ind-last);
+    	strArr[arrInd] = newstr;
+    	return strArr;
+}
+
+
+BusinessNode * load_tree_from_file(char * filename){
+	FILE *fptr = fopen(filename,"r");
+	BusinessNode * root;
+	if(fptr == NULL){ return NULL;}
+	else{
+	while(!feof(fptr)){
+		char *str = malloc(sizeof(char) * 200);
+		fgets(str,2000,fptr);
+		if(feof(fptr)){	free(str); break;}
+		char * * strArr = seperate(str);
+		BusinessNode * insertnode = create_node(strArr[0],strArr[1],strArr[2]);
+		root = tree_insert(insertnode,root);
+		free(strArr);
+		free(str);
+	}
+	fclose(fptr);
+	}
+	return root;
+}
+
+BusinessNode * tree_search_name(char * name, BusinessNode * root){
+	if (root == NULL){ return NULL; }
+	BusinessNode * find;
+	int cmp = strcmp(name, root ->name);
+	if (cmp < 0){ return tree_search_name(name, root -> left);}
+	if (cmp > 0){ return tree_search_name(name, root -> right);}
+	if (cmp == 0){ find = root;}
+	return find;
+}
+
+void destroy_tree(BusinessNode * root){
+	if(root == NULL){ return;}
+	destroy_tree(root -> left);
+	destroy_tree(root -> right);
+	free(root -> stars);
+	free(root -> name);
+	free(root -> address);
+	free(root);
+}
+
+void print_node(BusinessNode * node){
+	printf("Stars is: %s \n", node -> stars);
+	printf("Name is: %s \n", node -> name);
+	printf("Address is: %s \n\n", node -> address);
+
+}
+
+
+void print_tree(BusinessNode * tree){
+	if(tree == NULL){ return; }
+	printf("Stars is: %s \n", tree -> stars);
+	printf("Name is: %s \n", tree -> name);
+	printf("Address is: %s \n\n", tree -> address);
+	print_tree(tree -> left);
+	print_tree(tree -> right);
+}
+
+/*
+int main(int argc, char * * argv){
+
+	BusinessNode * root = create_node(strdup("5.0"),strdup("random name"),strdup("random address"));
+	root->left = create_node(strdup("3.5"), strdup("another name"), strdup("another address"));
+   	root->right = create_node(strdup("4.0"), strdup("yet another name"), strdup("some address"));
+   	root->left->right = create_node(strdup("1.5"), strdup("name 3"), strdup("address 3"));
+	BusinessNode * insertnode = create_node(strdup("5.0"),strdup("hhname"),strdup("random address"));
+	root = tree_insert(insertnode,root);
+
+	BusinessNode * root = load_tree_from_file("yelp_businesses.tsv");
+   	print_tree(root);
+   	BusinessNode * find1 = tree_search_name("walkabout",root);
+	BusinessNode * find2 = tree_search_name("Starbucks",root);
+	BusinessNode * find3 = tree_search_name("Hody Bar & Grill",root);
+	print_node(find1)	print_node(find2);
+	print_node(find2);
+	print_node(find3);
+	destroy_tree(root);
+   	return 0;
+}
+*/
+
